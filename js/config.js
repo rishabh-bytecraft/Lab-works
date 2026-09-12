@@ -5,8 +5,8 @@
 
 const CONFIG = {
   profile: {
-    name: "[MY NAME]", // Change this to your real name (e.g., "Alex Vance")
-    defaultPlaceholderName: "Alex Vance",
+    name: "Rishabh Panda",
+    defaultPlaceholderName: "Rishabh Panda",
     role: "Game Developer / Programmer",
     tagline: "I build games, systems, and experiences from the ground up.",
     subtext: "Specializing in C, Raylib, low-level engine architecture, data-oriented design, and real-time physics simulation.",
@@ -16,8 +16,8 @@ const CONFIG = {
     },
     location: "Global / Remote",
     experienceYears: "5+ Years Systems & Games",
-    email: "dev@alexvance.systems",
-    github: "https://github.com",
+    email: "rishabhpanda@gmail.com",
+    github: "https://github.com/rishabh-bytecraft",
     twitter: "https://x.com",
     discord: "https://discord.com",
     resumeUrl: "#resume"
