@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Developer & Systems Programmer — C, Raylib, Physics, DSA</title>
+  <meta name="description" content="Portfolio of a Game Developer & Systems Programmer specializing in C, Raylib, low-level engine architecture, data-oriented design, and real-time physics simulation.">
+
+  <!-- Open Graph & Meta -->
+  <meta property="og:title" content="Game Developer & Systems Programmer Portfolio">
+  <meta property="og:description" content="I build games, systems, and experiences from the ground up. Specialized in C, Raylib, Git, and DSA.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- Film Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Subtle Engineering Grid Backdrop -->
+  <div class="grid-backdrop" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       1. NAVIGATION HEADER
+       ========================================================================= -->
+  <header id="site-header" class="site-header">
+    <div class="container nav-container">
+      <div class="brand-wrapper">
+        <a href="#hero" class="brand-link">
+          <span class="brand-prompt">&gt;_</span>
+          <span id="brand-name-display">DEV_PORTFOLIO</span>
+        </a>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span id="status-text-display">Available for engine & game roles</span>
+        </div>
+      </div>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#dsa-systems" class="nav-link">Systems & DSA</a></li>
+          <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
+          <li><a href="#arsenal" class="nav-link">Arsenal</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Sound Effect Toggle -->
+        <button id="sound-toggle-btn" class="icon-btn" title="Toggle subtle acoustic feedback" aria-label="Toggle audio effects">
+          <span id="sound-icon">🔇</span>
+        </button>
+
+        <!-- Developer Console Trigger -->
+        <button class="terminal-trigger-btn" title="Open Low-Level Console (~)">
+          <span>CONSOLE</span>
+          <span class="terminal-key-hint">~</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle-btn" class="mobile-toggle-btn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+      <a href="#projects" class="mobile-nav-link nav-link">Projects</a>
+      <a href="#dsa-systems" class="mobile-nav-link nav-link">Systems & DSA</a>
+      <a href="#philosophy" class="mobile-nav-link nav-link">Philosophy</a>
+      <a href="#arsenal" class="mobile-nav-link nav-link">Arsenal</a>
+      <a href="#contact" class="mobile-nav-link nav-link">Contact</a>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. HERO SECTION
+       ========================================================================= -->
+  <section id="hero" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-meta">
+          <span class="hero-role-tag" id="hero-role-display">Game Developer / Programmer</span>
+          <button id="name-edit-badge" class="name-edit-badge" title="Click to customize your display name">
+            <span>✎</span> Customize Name
+          </button>
+        </div>
+
+        <div class="hero-name-row">
+          <h1 class="hero-name" id="hero-name-display">[MY NAME]</h1>
+        </div>
+
+        <h2 class="hero-headline" id="hero-headline-display">
+          “I build games, systems, and experiences <em>from the ground up</em>.”
+        </h2>
+
+        <p class="hero-description" id="hero-desc-display">
+          Specializing in C, Raylib, low-level engine architecture, data-oriented design, and real-time physics simulation.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            <span>Explore Projects</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#dsa-systems" class="btn btn-secondary">
+            <span>Interactive DSA Benchmarks</span>
+          </a>
+          <button class="btn btn-secondary terminal-trigger-btn">
+            <span>Developer Console [~]</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Visual: Raylib-Inspired 2D Physics & Spatial Partitioning Simulation -->
+      <div class="hero-visual-wrapper">
+        <canvas id="hero-canvas" width="500" height="500" aria-label="Interactive 2D physics simulation"></canvas>
+
+        <!-- Raylib-style Telemetry HUD -->
+        <div class="hud-telemetry">
+          <div class="hud-group">
+            <div>RAYLIB 5.0 CORE</div>
+            <div>FPS: <span id="hud-fps">60 FPS</span></div>
+            <div>TIME: <span id="hud-frametime">0.45ms</span></div>
+          </div>
+          <div class="hud-group" style="text-align: right;">
+            <div>ENTITIES: <span id="hud-entities">42</span></div>
+            <div>COLLISION PAIRS: <span id="hud-pairs">18</span></div>
+            <div>MEM: <span>STATIC POOL</span></div>
+          </div>
+        </div>
+
+        <div class="hud-controls">
+          <div class="hud-modes">
+            <button class="hud-mode-btn active" data-mode="sandbox">PHYSICS</button>
+            <button class="hud-mode-btn" data-mode="spatial">SPATIAL GRID</button>
+            <button class="hud-mode-btn" data-mode="wireframe">WIREFRAME</button>
+          </div>
+          <span class="hud-hint">Click to add pulse / gravity</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. PROJECTS SECTION (CENTERPIECE)
+       ========================================================================= -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Featured Works</div>
+        <h2 class="section-title">Systems & Game Projects</h2>
+        <p class="section-subtitle">
+          Handcrafted from scratch in C and Raylib with continuous collision detection, spatial broadphase algorithms, and zero dynamic memory allocations in the tick loop.
+        </p>
+      </div>
+
+      <div id="projects-container" class="projects-grid">
+        <!-- Rendered dynamically from js/config.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. INTERACTIVE DSA & SYSTEMS ARCHITECTURE PLAYGROUND
+       ========================================================================= -->
+  <section id="dsa-systems" class="section dsa-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Data Structures & Architecture</div>
+        <h2 class="section-title">Spatial Partitioning & Memory Arena Workbench</h2>
+        <p class="section-subtitle">
+          Real-time interactive benchmarks contrasting naive $O(N^2)$ brute force collision loops against hierarchical $O(N \log N)$ Quadtree spatial indexing, alongside linear contiguous memory arena allocation.
+        </p>
+      </div>
+
+      <div class="dsa-container">
+        <!-- Workbench Left: Interactive Canvas Viewport -->
+        <div class="dsa-workbench">
+          <div class="workbench-header">
+            <div class="workbench-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></svg>
+              <span>BROADPHASE COLLISION INDEXER</span>
+            </div>
+            <div class="algo-switch">
+              <button class="algo-tab-btn active" data-algo="quadtree">Quadtree [O(N log N)]</button>
+              <button class="algo-tab-btn" data-algo="brute">Brute Force [O(N²)]</button>
+            </div>
+          </div>
+
+          <div class="workbench-viewport">
+            <canvas id="dsa-canvas" width="680" height="425"></canvas>
+          </div>
+
+          <div class="workbench-controls">
+            <div class="control-group">
+              <span class="control-label">Entity Density:</span>
+              <input type="range" id="node-count-slider" class="range-slider" min="20" max="110" value="55">
+              <span id="node-count-label" class="control-label" style="color: var(--text-primary); min-width: 80px;">55 Entities</span>
+            </div>
+            <div class="control-group">
+              <span class="control-label">Broadphase:</span>
+              <span class="mono-tag" id="dsa-complexity">O(N log N)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workbench Right: Telemetry & Memory Arena Visualizer -->
+        <div class="dsa-analysis-panel">
+          <!-- Real-Time Complexity Telemetry -->
+          <div class="benchmark-card">
+            <div class="benchmark-card-title">// Real-Time Broadphase Telemetry</div>
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-box-label">Tested Pairs / Frame</div>
+                <div class="stat-box-value highlight" id="dsa-checks">142</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-label">Naive Pairs (N*(N-1)/2)</div>
+                <div class="stat-box-value" id="dsa-theoretical">1,485</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-label">Broadphase Savings</div>
+                <div class="stat-box-value savings" id="dsa-savings">+90.4%</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-label">L1 Cache Line Hit</div>
+                <div class="stat-box-value" style="color: var(--accent-violet);">98.2%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fixed Memory Arena Allocator Card -->
+          <div class="memory-arena-card">
+            <div class="benchmark-card-title">// Linear Contiguous Memory Arena</div>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.85rem;">
+              Demonstrating zero heap fragmentation. Subsystems bump a monotonic pointer forward; tearing down frame temporary data is an instantaneous $O(1)$ pointer reset.
+            </p>
+
+            <div class="memory-bar-wrapper">
+              <div class="memory-bar-track">
+                <div class="mem-block mem-block-entities" title="Entity State SoA (32%)"></div>
+                <div class="mem-block mem-block-transforms" title="Transforms & Quaternions (24%)"></div>
+                <div class="mem-block mem-block-scratch" title="Frame Scratchpad (18%)"></div>
+                <div class="mem-block mem-block-free" title="Available Unallocated Memory"></div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; margin-bottom: 1rem;">
+              <span id="mem-used-text" style="color: var(--accent-blue);">28.0 KB / 64.0 KB</span>
+              <span id="mem-free-text" style="color: var(--text-muted);">36.0 KB Available</span>
+            </div>
+
+            <div class="memory-legend" style="margin-bottom: 1.25rem;">
+              <div class="legend-item">
+                <div class="legend-swatch" style="background-color: #2E4068;"></div>
+                <span>Entity SoA</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-swatch" style="background-color: #3F3369;"></div>
+                <span>Transforms</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-swatch" style="background-color: #2F4D4A;"></div>
+                <span>Scratch Arena</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <button class="btn btn-secondary btn-sm" id="btn-alloc-transform">+ 2KB Push</button>
+              <button class="btn btn-secondary btn-sm" id="btn-alloc-mesh">+ 8KB Mesh</button>
+              <button class="btn btn-primary btn-sm" id="btn-reset-arena" style="margin-left: auto;">
+                <span>↺</span> Reset Arena [O(1)]
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. ENGINEERING PHILOSOPHY & STANDARDS
+       ========================================================================= -->
+  <section id="philosophy" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Core Principles</div>
+        <h2 class="section-title">Engineering Standards</h2>
+        <p class="section-subtitle">
+          How systems are built from first principles — optimizing for hardware cache architecture, predictable execution times, and clean change history.
+        </p>
+      </div>
+
+      <div id="philosophy-grid" class="philosophy-grid">
+        <!-- Rendered dynamically from js/config.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. TECHNICAL ARSENAL (SKILLS)
+       ========================================================================= -->
+  <section id="arsenal" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Capabilities</div>
+        <h2 class="section-title">Technical Arsenal</h2>
+        <p class="section-subtitle">
+          Deep proficiency across systems programming, low-level graphics math, data structures, and production Git tooling.
+        </p>
+      </div>
+
+      <div id="arsenal-grid" class="arsenal-grid">
+        <!-- Rendered dynamically from js/config.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. CONTACT & FOOTER
+       ========================================================================= -->
+  <footer id="contact" class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-cta-row">
+        <div class="footer-cta-text">
+          <h2>Let's build something remarkable.</h2>
+          <p>Open for game systems, rendering engine roles, technical programming, or low-level collaborations.</p>
+        </div>
+
+        <div class="footer-contact-actions">
+          <button class="btn btn-primary copy-email-btn">
+            <span>✉</span> Copy Direct Email
+          </button>
+          <a href="mailto:dev@alexvance.systems" class="btn btn-secondary contact-email-link">
+            Send Email
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-meta-bottom">
+        <div>
+          <span>Direct: </span>
+          <span id="contact-email-display" class="copy-email-btn" style="color: var(--accent-blue); cursor: pointer; text-decoration: underline;">
+            dev@alexvance.systems
+          </span>
+        </div>
+
+        <div class="footer-social-links">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+          <a href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord</a>
+          <button class="terminal-trigger-btn" style="padding: 0.2rem 0.5rem; font-size: 0.72rem;">Console [~]</button>
+        </div>
+
+        <div>
+          <span>Built with C Mindset & Zero Web Bloat</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       8. QUAKE / RAYLIB DEVELOPER CONSOLE DRAWER (~)
+       ========================================================================= -->
+  <div id="console-drawer" class="console-drawer" aria-label="Developer Console">
+    <div class="console-top-bar">
+      <div class="console-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        <span>RAYLIB / LOW-LEVEL DEVELOPER CONSOLE (V1.2.0)</span>
+      </div>
+      <div>
+        <span style="margin-right: 1.5rem; color: var(--text-muted);">Press [`] or [ESC] to toggle</span>
+        <button id="console-close-btn" class="console-close-btn" aria-label="Close console">✕</button>
+      </div>
+    </div>
+
+    <div id="console-output" class="console-body">
+      <p class="console-line system">Antigravity C99 / Systems Kernel Console Initialized.</p>
+      <p class="console-line output">Type <span style="color: var(--accent-blue);">help</span> to inspect available commands (whoami, projects, skills, dsa, cat resume.txt, benchmarks).</p>
+    </div>
+
+    <div class="console-input-row">
+      <span class="console-prompt-symbol">&gt;</span>
+      <input type="text" id="console-input" class="console-input" autocomplete="off" spellcheck="false" placeholder="Enter command (e.g. 'help', 'skills', 'benchmarks')...">
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       9. PLAYABLE LIVE DEMO MODAL
+       ========================================================================= -->
+  <div id="demo-modal" class="modal-overlay" aria-hidden="true" role="dialog">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>⚙</span>
+          <span id="modal-demo-title">Engine Viewport</span>
+        </div>
+        <button id="modal-close-btn" class="modal-close-btn" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-viewport">
+        <canvas id="modal-demo-canvas" width="800" height="450"></canvas>
+      </div>
+
+      <div class="modal-footer">
+        <span>STATUS: ACTIVE RUNTIME</span>
+        <span>ZERO HEAP ALLOCATION ACTIVE</span>
+        <span>PRESS [ESC] TO CLOSE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/hero-simulation.js"></script>
+  <script src="js/dsa-visualizer.js"></script>
+  <script src="js/project-demos.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
