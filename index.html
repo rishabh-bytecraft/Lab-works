@@ -53,6 +53,13 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Fullscreen Presentation Slides Deck Trigger -->
+        <button class="terminal-trigger-btn launch-presentation-btn" title="Open Fullscreen Presentation Deck (P)">
+          <span>📽</span>
+          <span>SLIDES</span>
+          <span class="terminal-key-hint">P</span>
+        </button>
+
         <!-- Sound Effect Toggle -->
         <button id="sound-toggle-btn" class="icon-btn" title="Toggle subtle acoustic feedback" aria-label="Toggle audio effects">
           <span id="sound-icon">🔇</span>
@@ -157,12 +164,50 @@
        ========================================================================= -->
   <section id="projects" class="section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Featured Works</div>
-        <h2 class="section-title">Systems & Game Projects</h2>
-        <p class="section-subtitle">
-          Handcrafted from scratch in C and Raylib with continuous collision detection, spatial broadphase algorithms, and zero dynamic memory allocations in the tick loop.
-        </p>
+      <div class="projects-header-row">
+        <div>
+          <div class="section-tag">Featured Works</div>
+          <h2 class="section-title">Systems & Game Projects</h2>
+          <p class="section-subtitle">
+            Handcrafted from scratch in C and Raylib with continuous collision detection, spatial broadphase algorithms, and zero dynamic memory allocations in the tick loop.
+          </p>
+        </div>
+        <div class="view-mode-controls">
+          <div class="view-mode-switch">
+            <button id="view-mode-slides" class="view-mode-btn active" title="Interactive Project Slides">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span>SLIDES</span>
+            </button>
+            <button id="view-mode-grid" class="view-mode-btn" title="View All in Grid">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>GRID</span>
+            </button>
+          </div>
+          <button id="btn-launch-presentation" class="btn btn-secondary btn-sm launch-presentation-btn" title="Open Fullscreen Presentation Pitch Deck (P)">
+            <span>📽</span> Presentation Deck [P]
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Slider Controls Bar (Active in Slides View) -->
+      <div id="projects-slider-nav" class="projects-slider-nav">
+        <div class="slide-nav-left">
+          <span id="slide-counter-display" class="slide-counter-badge">01 / 04</span>
+          <span id="slide-title-display" class="slide-title-preview">Aetheria: 2.5D Raycasting Engine</span>
+        </div>
+
+        <div id="slide-dots-container" class="slide-dots-wrapper">
+          <!-- Dots rendered dynamically -->
+        </div>
+
+        <div class="slide-nav-buttons">
+          <button id="slide-prev-btn" class="slide-nav-arrow-btn" title="Previous Project Slide (Left Arrow)">
+            <span>←</span> PREV
+          </button>
+          <button id="slide-next-btn" class="slide-nav-arrow-btn" title="Next Project Slide (Right Arrow)">
+            NEXT <span>→</span>
+          </button>
+        </div>
       </div>
 
       <div id="projects-container" class="projects-grid">
@@ -421,12 +466,49 @@
     </div>
   </div>
 
+  <!-- =========================================================================
+       10. FULLSCREEN PRESENTATION SLIDES DECK (PITCH DECK MODAL)
+       ========================================================================= -->
+  <div id="presentation-modal" class="presentation-modal" aria-hidden="true" role="dialog">
+    <div class="pres-progress-bar-track">
+      <div id="pres-progress-bar" class="pres-progress-bar"></div>
+    </div>
+
+    <div class="presentation-topbar">
+      <div class="pres-title-row">
+        <span>📽 PORTFOLIO PRESENTATION SLIDES</span>
+        <span id="pres-counter" class="pres-counter">SLIDE 01 / 08</span>
+      </div>
+      <div>
+        <span style="margin-right: 1.5rem; color: var(--text-muted); font-size: 0.78rem;">[←] [→] or [SPACE] to Navigate • [ESC] to Exit</span>
+        <button id="presentation-close-btn" class="console-close-btn" aria-label="Close presentation" style="font-size: 1rem;">✕</button>
+      </div>
+    </div>
+
+    <div class="presentation-main-stage">
+      <div id="pres-slide-content" class="pres-slide-card">
+        <!-- Injected dynamically from js/slides.js -->
+      </div>
+    </div>
+
+    <div class="presentation-bottom-bar">
+      <div>
+        <span>RISHABH PANDA // GAME DEVELOPER & SYSTEMS PROGRAMMER</span>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <button id="pres-prev-btn" class="slide-nav-arrow-btn">← PREVIOUS</button>
+        <button id="pres-next-btn" class="slide-nav-arrow-btn">NEXT →</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/config.js"></script>
   <script src="js/hero-simulation.js"></script>
   <script src="js/dsa-visualizer.js"></script>
   <script src="js/project-demos.js"></script>
   <script src="js/terminal.js"></script>
+  <script src="js/slides.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/main.js"></script>
 </body>

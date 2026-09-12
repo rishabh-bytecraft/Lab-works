@@ -27,11 +27,18 @@
       { text: '  skills         - Inspect low-level C, Raylib, and DSA toolkit', type: 'output' },
       { text: '  dsa            - Explain spatial partitioning & memory layouts', type: 'output' },
       { text: '  cat resume.txt - Print formatted text resume', type: 'output' },
+      { text: '  slides         - Launch fullscreen portfolio presentation deck', type: 'output' },
       { text: '  benchmarks     - View simulated engine frame time benchmarks', type: 'output' },
       { text: '  contact        - Direct contact channels', type: 'output' },
       { text: '  clear          - Clear console output buffer', type: 'output' },
       { text: '  exit           - Close this console drawer', type: 'output' }
     ],
+
+    slides: () => {
+      const btn = document.getElementById('btn-launch-presentation');
+      if (btn) btn.click();
+      return [{ text: 'Launching Fullscreen Portfolio Presentation Slides Deck [P]...', type: 'accent' }];
+    },
 
     whoami: () => [
       { text: `NAME: ${CONFIG.profile.name === '[MY NAME]' ? 'Alex Vance (Game Developer)' : CONFIG.profile.name}`, type: 'accent' },
