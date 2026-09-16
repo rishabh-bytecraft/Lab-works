@@ -44,6 +44,7 @@
 
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
+          <li><a href="#portfolio-slides" class="nav-link" style="color: var(--accent-blue); font-weight: 600;">🎞 Portfolio Slides</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
           <li><a href="#dsa-systems" class="nav-link">Systems & DSA</a></li>
           <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
@@ -82,6 +83,7 @@
 
     <!-- Mobile Drawer -->
     <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+      <a href="#portfolio-slides" class="mobile-nav-link nav-link" style="color: var(--accent-blue); font-weight: 600;">🎞 Portfolio Slides</a>
       <a href="#projects" class="mobile-nav-link nav-link">Projects</a>
       <a href="#dsa-systems" class="mobile-nav-link nav-link">Systems & DSA</a>
       <a href="#philosophy" class="mobile-nav-link nav-link">Philosophy</a>
@@ -116,15 +118,21 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">
+          <!-- Prominent Slides Button -->
+          <button class="btn btn-primary launch-presentation-btn" id="hero-slides-btn" style="border-color: var(--accent-blue); box-shadow: 0 0 24px -2px var(--accent-blue-glow);">
+            <span>📽</span>
+            <span>View Portfolio Slides</span>
+            <span class="terminal-key-hint" style="background: rgba(124, 156, 255, 0.25); color: #fff;">[P]</span>
+          </button>
+          <a href="#projects" class="btn btn-secondary">
             <span>Explore Projects</span>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#dsa-systems" class="btn btn-secondary">
-            <span>Interactive DSA Benchmarks</span>
+            <span>DSA Benchmarks</span>
           </a>
           <button class="btn btn-secondary terminal-trigger-btn">
-            <span>Developer Console [~]</span>
+            <span>Console [~]</span>
           </button>
         </div>
       </div>
@@ -154,6 +162,72 @@
             <button class="hud-mode-btn" data-mode="wireframe">WIREFRAME</button>
           </div>
           <span class="hud-hint">Click to add pulse / gravity</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       2B. PORTFOLIO SLIDES SECTION (EMBEDDED INTERACTIVE SLIDE DECK)
+       ========================================================================= -->
+  <section id="portfolio-slides" class="section slides-section">
+    <div class="container">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem;">
+        <div>
+          <div class="section-tag">Interactive Presentation</div>
+          <h2 class="section-title">Portfolio Slide Deck</h2>
+          <p class="section-subtitle">
+            An 8-slide deep dive into my systems architecture, game engines, physics solvers, and engineering philosophy.
+          </p>
+        </div>
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+          <button class="btn btn-primary launch-presentation-btn" title="Launch Fullscreen Pitch Deck (Press P)">
+            <span>⛶</span> Fullscreen Slides [P]
+          </button>
+        </div>
+      </div>
+
+      <!-- Embedded Slide Player Container -->
+      <div class="slide-deck-player">
+        <div class="slide-player-topbar">
+          <div class="slide-player-header-left">
+            <span class="slide-counter-badge" id="embedded-slide-counter">SLIDE 01 / 08</span>
+            <span class="slide-title-preview" id="embedded-slide-tag">OVERVIEW // 01</span>
+          </div>
+
+          <!-- Quick Jump Tabs -->
+          <div class="slide-quick-tabs" id="embedded-slide-tabs">
+            <!-- Tabs populated dynamically from js/slides.js -->
+          </div>
+        </div>
+
+        <div class="slide-player-progress-track">
+          <div id="embedded-slide-progress" class="slide-player-progress-bar"></div>
+        </div>
+
+        <!-- Slide Stage Area -->
+        <div class="slide-stage" id="embedded-slide-viewport">
+          <!-- Slide Content injected dynamically from js/slides.js -->
+        </div>
+
+        <!-- Slide Player Controls Bar -->
+        <div class="slide-player-controls">
+          <button id="embedded-prev-btn" class="slide-nav-arrow-btn" title="Previous Slide (Left Arrow)">
+            <span>←</span> PREV SLIDE
+          </button>
+
+          <div class="slide-dots-wrapper" id="embedded-slide-dots">
+            <!-- Dots populated dynamically -->
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <button id="embedded-autoplay-btn" class="slide-nav-arrow-btn" title="Toggle Auto-advance">
+              <span id="autoplay-icon">▶</span> Auto-Play
+            </button>
+            <button id="embedded-next-btn" class="slide-nav-arrow-btn" title="Next Slide (Right Arrow or Space)">
+              NEXT SLIDE <span>→</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
